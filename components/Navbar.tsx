@@ -15,11 +15,11 @@ const Navbar: React.FC = () => {
           </div>
 
           <div className="flex flex-col justify-center">
-            <span className="text-xl lg:text-2xl font-serif font-bold tracking-[0.1em] text-[#D4C5A5] uppercase drop-shadow-md whitespace-nowrap">
+            <span className="text-xl lg:text-2xl font-premium font-bold tracking-[0.2em] text-[#D4C5A5] uppercase drop-shadow-md whitespace-nowrap">
               Sicurezza
             </span>
-            <span className="text-[8px] lg:text-[9px] uppercase tracking-[0.3em] text-white/30 group-hover:text-white/60 transition-colors ml-0.5 whitespace-nowrap">
-              Luxury Security
+            <span className="text-[8px] lg:text-[9px] uppercase tracking-[0.4em] text-white/40 group-hover:text-primary transition-colors ml-0.5 whitespace-nowrap">
+              Blindaje Arquitectónico de Lujo
             </span>
           </div>
         </div>

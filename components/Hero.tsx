@@ -15,11 +15,11 @@ const Hero: React.FC = () => {
       <div className="container mx-auto px-6 relative z-20">
         <div className="max-w-4xl">
           <span className="text-primary uppercase tracking-[0.4em] text-sm font-bold mb-6 block">Seguridad Premier en Antioquia</span>
-          <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl text-white leading-[1.1] mb-8">
-            Seguridad y Estatus: <br />
-            <span className="italic font-light">El Legado Definitivo.</span>
+          <h1 className="font-premium text-5xl md:text-6xl lg:text-7xl text-white leading-[1.1] mb-8 tracking-wider">
+            SEGURIDAD Y ESTATUS: <br />
+            <span className="italic font-serif font-light text-primary">El Legado Definitivo.</span>
           </h1>
-          <p className="text-lg md:text-xl text-white/70 font-light max-w-xl mb-10 leading-relaxed">
+          <p className="text-lg md:text-xl text-white/70 font-serif italic max-w-xl mb-10 leading-relaxed">
             Protegiendo las residencias más exclusivas en el Área Metropolitana y el Oriente Antioqueño con obras maestras arquitectónicas que funcionan como fortalezas anti robo y atentados a su propiedad.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
