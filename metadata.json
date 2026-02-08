@@ -1,0 +1,7 @@
+{
+  "name": "Sicurezza - Luxury Security",
+  "description": "A high-end web application for an elite armored door company in Antioquia, featuring an AI-powered security configurator and luxury portfolio.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
