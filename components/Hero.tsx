@@ -3,7 +3,7 @@ import React from 'react';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative h-screen min-h-[600px] flex items-center overflow-hidden">
+    <section className="relative h-screen min-h-[600px] flex items-center overflow-hidden pt-16 md:pt-20">
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 hero-gradient z-10"></div>
         <div className="absolute inset-0 bg-black/50 z-10"></div> {/* Oscurecimiento para contraste */}
