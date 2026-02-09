@@ -1,6 +1,38 @@
 // geminiService.ts
 const API_KEY = import.meta.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY;
 
+// Función para elegir el mejor modelo disponible que NO sea de pago excesivo
+async function getSafeModel(key: string): Promise<string> {
+  try {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${key}`);
+    const data = await response.json();
+
+    if (!data.models) {
+      console.warn("No se pudo listar modelos. Usando fallback seguro.");
+      return "gemini-pro";
+    }
+
+    console.log("📋 Lista de modelos recibida. Buscando uno seguro...");
+
+    // Buscamos en orden de prioridad, evitando versiones "latest" o experimentales que cobran cuota
+    const safeModel = data.models.find((m: any) => m.name.includes("gemini-1.5-flash-001")) ||
+      data.models.find((m: any) => m.name.includes("gemini-1.5-flash")) ||
+      data.models.find((m: any) => m.name.includes("gemini-pro"));
+
+    if (safeModel) {
+      // La API devuelve "models/nombre", limpiamos el prefijo para la URL
+      const cleanName = safeModel.name.replace("models/", "");
+      console.log(`✅ Modelo seguro seleccionado: ${cleanName}`);
+      return cleanName;
+    }
+
+    return "gemini-pro"; // Si todo falla, usamos el clásico
+  } catch (e) {
+    console.warn("⚠️ Error listando modelos, usando default:", e);
+    return "gemini-pro";
+  }
+}
+
 export const getSecurityAdvice = async (data: any) => {
   console.log("🔒 Iniciando consulta de seguridad blindada...");
 
@@ -9,9 +41,9 @@ export const getSecurityAdvice = async (data: any) => {
     throw new Error("Clave de API no configurada.");
   }
 
-  // 1. FORZAMOS EL MODELO SEGURO Y GRATUITO (Evitamos gemini-2.1 o similares con cuotas bajas)
-  const MODEL_NAME = "gemini-1.5-flash";
-  const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${API_KEY}`;
+  // 1. OBTENER MODELO SEGURO (Dinámico)
+  const modelName = await getSafeModel(API_KEY);
+  const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${API_KEY}`;
 
   // 2. PROMPT DE EXPERTO (Sicurezza)
   const systemPrompt = `Actúa como el Director de Estrategia de 'Sicurezza' (Blindaje de Lujo).
@@ -59,8 +91,8 @@ export const getSecurityAdvice = async (data: any) => {
       throw new Error(`Error de conexión (${response.status})`);
     }
 
-    const json = await response.json();
-    const rawText = json.candidates?.[0]?.content?.parts?.[0]?.text;
+    const jsonResult = await response.json();
+    const rawText = jsonResult.candidates?.[0]?.content?.parts?.[0]?.text;
 
     if (!rawText) {
       throw new Error("La IA no devolvió texto.");
