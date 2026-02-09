@@ -29,16 +29,16 @@ const Navbar: React.FC = () => {
         {/* Desktop Menu - xl+ only */}
         <div className="hidden xl:flex items-center gap-6 2xl:gap-8 ml-auto">
           {[
-            { label: 'Legado', href: '#legado' },
-            { label: 'Configurador', href: '#configurador' },
-            { label: 'Planes', href: '#ingenieria' },
-            { label: 'Ofertas', href: '#ofertas' },
-            { label: 'Portafolio', href: '#portafolio' },
-            { label: 'Garantía', href: '#testimonios' },
+            { label: '¿POR QUÉ UNA PUERTA?', href: '#legado' },
+            { label: 'CONFIGURAR BLINDAJE', href: '#configurador' },
+            { label: 'PLANES', href: '#ingenieria' },
+            { label: 'OFERTAS', href: '#ofertas' },
+            { label: 'PORTAFOLIO', href: '#portafolio' },
+            { label: 'RESPALDO', href: '#testimonios' },
           ].map((link) => (
             <a
               key={link.label}
-              className="relative text-[11px] 2xl:text-xs uppercase tracking-[0.15em] font-bold text-white/70 hover:text-white transition-colors duration-300 group/link whitespace-nowrap"
+              className="relative text-[10px] 2xl:text-xs uppercase tracking-[0.15em] font-bold text-white/70 hover:text-white transition-colors duration-300 group/link whitespace-nowrap"
               href={link.href}
             >
               {link.label}
@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
             href="https://wa.me/5731234567890"
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-2 bg-[#D4C5A5] hover:bg-[#C3B494] text-[#050505] px-5 py-2.5 rounded-[1px] text-[11px] 2xl:text-xs uppercase tracking-[0.2em] font-black transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(212,197,165,0.3)] whitespace-nowrap"
+            className="ml-2 bg-[#D4C5A5] hover:bg-[#C3B494] text-[#050505] px-5 py-2.5 rounded-[1px] text-[10px] 2xl:text-xs uppercase tracking-[0.2em] font-black transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(212,197,165,0.3)] whitespace-nowrap"
           >
             Consulta
           </a>
@@ -71,12 +71,12 @@ const Navbar: React.FC = () => {
       <div className={`xl:hidden absolute top-full left-0 w-full bg-[#050505]/98 backdrop-blur-2xl border-b border-[#D4C5A5]/20 transition-all duration-300 overflow-hidden ${isMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
         <div className="flex flex-col p-8 gap-6 text-center">
           {[
-            { label: 'Legado', href: '#legado' },
-            { label: 'Configurador', href: '#configurador' },
-            { label: 'Planes', href: '#ingenieria' },
-            { label: 'Ofertas', href: '#ofertas' },
-            { label: 'Portafolio', href: '#portafolio' },
-            { label: 'Garantía', href: '#testimonios' },
+            { label: '¿POR QUÉ UNA PUERTA?', href: '#legado' },
+            { label: 'CONFIGURAR BLINDAJE', href: '#configurador' },
+            { label: 'PLANES', href: '#ingenieria' },
+            { label: 'OFERTAS', href: '#ofertas' },
+            { label: 'PORTAFOLIO', href: '#portafolio' },
+            { label: 'RESPALDO', href: '#testimonios' },
           ].map((link) => (
             <a
               key={link.label}

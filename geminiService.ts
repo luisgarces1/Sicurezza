@@ -50,9 +50,10 @@ async function getBestAvailableModel(key: string): Promise<string> {
 }
 
 export const getSecurityAdvice = async (data: any) => {
+  console.log("Iniciando consulta de seguridad...");
   if (!API_KEY) {
-    console.error("API KEY NO ENCONTRADA");
-    throw new Error("Clave de API no configurada.");
+    console.error("CRÍTICO: No se detectó VITE_GEMINI_API_KEY en el entorno.");
+    throw new Error("Error de configuración: Clave de API no encontrada. Verifique las variables de entorno.");
   }
 
   // 1. Obtener el mejor modelo disponible dinámicamente
@@ -68,29 +69,20 @@ export const getSecurityAdvice = async (data: any) => {
 
   // PROMPT DE ALTA ESTRATEGIA (Sicurezza)
   const systemPrompt = `
-    Eres el Director de Estrategia de 'Sicurezza'. No eres un chatbot genérico. Eres un consultor de seguridad de élite para el 1% de Antioquia.
+    Eres el Director de Estrategia de 'Sicurezza'. Genera un informe de seguridad técnico y premium.
     
-    DATOS DEL OBJETIVO:
+    DATOS:
     - Propiedad: ${data.propertyType}
-    - Nivel Solicitado: ${data.securityLevel}
+    - Nivel: ${data.securityLevel}
     - Ubicación: ${barrioClean}, ${municipioClean}
     
-    REGLAS DE ORO DE ESCRITURA:
-    1. TONO: Hiper-profesional, clínico y premium. Cero clichés. Cero exclamaciones.
-    2. VARIABILIDAD: Cada diagnóstico debe ser único. Prohibido usar frases de plantilla como "hemos detectado un aumento".
-    3. ESPECIFICIDAD: Si el nivel es III, habla de delincuencia común y semi-organizada. Si es IV+, habla de ataques de alto perfil, secuestro o blindaje militar.
-    4. CONTEXTO LOCAL: 
-       - Si es un barrio popular o de alta densidad (ej. ${barrioClean}): Habla de oportunismo, asonadas y vulnerabilidad en accesos rápidos.
-       - Si es Poblado/Envigado/Laureles: Habla de inteligencia criminal, inhibidores de señal y vulnerabilidad de servicio doméstico.
-       - Si es Oriente/Campestre: Habla de aislamiento, tiempos de reacción de la policía (>15 min) y vulnerabilidad perimetral.
-
-    ESTRUCTURA TÉCNICA OBLIGATORIA (JSON):
-    - "title": Un título imponente y personalizado para ${municipioClean}.
-    - "analysis": Un párrafo de 4 líneas que explique POR QUÉ esa propiedad en ${barrioClean} es un blanco hoy. Sé creativo y crudo.
-    - "recommendations": 3 puntos técnicos específicos que NO sean "poner una puerta". Habla de "anclajes estructurales", "cristalería de policarbonato laminado", "marcos de acero balístico", "cerraduras biométricas de grado militar", etc.
-    - "closing": Una frase final que genere urgencia sin perder la clase.
-
-    Responde SOLO el JSON.
+    Responde estrictamente en formato JSON con esta estructura:
+    {
+      "title": "Título imponente",
+      "analysis": "Análisis de 4 líneas sobre riesgos específicos en ${barrioClean}",
+      "recommendations": ["Recomendación técnica 1", "Recomendación técnica 2", "Recomendación técnica 3"],
+      "closing": "Frase de cierre profesional"
+    }
     `;
 
   try {
@@ -104,10 +96,17 @@ export const getSecurityAdvice = async (data: any) => {
           parts: [{ text: systemPrompt }]
         }],
         generationConfig: {
-          temperature: 0.9, // Aumentamos la creatividad
+          temperature: 0.7,
           topP: 0.95,
           maxOutputTokens: 1000,
-        }
+          responseMimeType: "application/json",
+        },
+        safetySettings: [
+          { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE" },
+          { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_NONE" },
+          { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_NONE" },
+          { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_NONE" },
+        ],
       })
     });
 
@@ -121,41 +120,42 @@ export const getSecurityAdvice = async (data: any) => {
     }
 
     const json = await response.json();
+    console.log("DEBUG: Respuesta API", json);
 
-    if (json.promptFeedback?.blockReason) {
-      throw new Error(`La consulta fue bloqueada por políticas de seguridad: ${json.promptFeedback.blockReason}`);
-    }
-
-    let resultText = json.candidates?.[0]?.content?.parts?.[0]?.text;
+    let resultText = json.candidates?.[0]?.content?.parts?.[0]?.text || "";
 
     if (!resultText) {
       if (json.candidates?.[0]?.finishReason === "SAFETY") {
-        throw new Error("La IA bloqueó la respuesta por motivos de seguridad. Intente con otros términos.");
+        throw new Error("Contenido bloqueado por seguridad.");
       }
-      console.error("Respuesta de IA vacía o nula:", json);
-      throw new Error("La IA no generó una respuesta válida.");
+      throw new Error("No hay respuesta de la IA.");
     }
 
-    // EXTRAER JSON: Buscamos el primer '{' y el último '}' por si la IA agregó texto extra
-    const startIdx = resultText.indexOf('{');
-    const endIdx = resultText.lastIndexOf('}');
+    // EXTRAER JSON: Buscar el primer '{' y el último '}'
+    const startIndex = resultText.indexOf('{');
+    const endIndex = resultText.lastIndexOf('}');
 
-    if (startIdx === -1 || endIdx === -1) {
-      console.error("La IA no devolvió un formato JSON válido:", resultText);
+    if (startIndex === -1 || endIndex === -1) {
+      console.error("No se detectó JSON:", resultText);
       throw new Error("Formato de respuesta inválido.");
     }
 
-    const cleanJson = resultText.substring(startIdx, endIdx + 1);
+    const jsonSnippet = resultText.substring(startIndex, endIndex + 1);
 
     try {
-      return JSON.parse(cleanJson);
+      return JSON.parse(jsonSnippet);
     } catch (e) {
-      console.error("Error al parsear el JSON extraído:", cleanJson);
-      throw new Error("Error en la estructura de la respuesta.");
+      // Intento final: limpiar caracteres invisibles
+      try {
+        const cleaned = jsonSnippet.replace(/[\u0000-\u001F\u007F-\u009F]/g, "");
+        return JSON.parse(cleaned);
+      } catch (inner) {
+        throw new Error("Error de estructura en la respuesta.");
+      }
     }
 
   } catch (error: any) {
-    console.error("Error crítico en getSecurityAdvice:", error.message);
+    console.error("Error en servicio IA:", error.message);
     throw error;
   }
 };
