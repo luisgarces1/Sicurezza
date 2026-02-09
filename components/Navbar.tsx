@@ -6,22 +6,22 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-[100] bg-[#050505]/95 backdrop-blur-xl border-b border-[#D4C5A5]/10 shadow-2xl transition-all duration-300">
-      <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 md:h-20 flex items-center justify-between gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between gap-2">
         {/* Logo Section */}
         <div
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="flex items-center gap-3 md:gap-4 group cursor-pointer h-full py-3 shrink-0"
+          className="flex items-center gap-2 md:gap-4 group cursor-pointer h-full py-3 shrink-0"
         >
-          <div className="h-9 md:h-12 aspect-square p-1 bg-black/20 rounded border border-[#D4C5A5]/30 shadow-[0_0_15px_rgba(212,197,165,0.1)] group-hover:border-[#D4C5A5]/60 transition-all duration-500 overflow-hidden">
+          <div className="h-8 md:h-12 aspect-square p-1 bg-black/20 rounded border border-[#D4C5A5]/30 shadow-[0_0_15px_rgba(212,197,165,0.1)] group-hover:border-[#D4C5A5]/60 transition-all duration-500 overflow-hidden">
             <img src="/images/logo_final.jpg" alt="Sicurezza Logo" className="h-full w-full object-cover rounded-sm" />
           </div>
 
           <div className="flex flex-col justify-center">
-            <span className="text-xl md:text-2xl font-premium font-bold tracking-[0.2em] text-[#D4C5A5] uppercase drop-shadow-md whitespace-nowrap leading-none">
+            <span className="text-lg md:text-2xl font-premium font-bold tracking-[0.1em] md:tracking-[0.2em] text-[#D4C5A5] uppercase drop-shadow-md whitespace-nowrap leading-none">
               Sicurezza
             </span>
-            <span className="text-[7px] md:text-[9px] uppercase tracking-[0.2em] md:tracking-[0.4em] text-white/40 group-hover:text-primary transition-colors ml-0.5 whitespace-nowrap mt-1">
-              Blindaje Arquitectónico <span className="hidden sm:inline">de Lujo</span>
+            <span className="text-[6px] md:text-[9px] uppercase tracking-[0.1em] md:tracking-[0.3em] text-white/30 group-hover:text-primary transition-colors ml-0.5 whitespace-nowrap mt-1">
+              Blindaje Arquitectónico <span className="hidden md:inline">de Lujo</span>
             </span>
           </div>
         </div>

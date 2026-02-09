@@ -31,9 +31,9 @@ const Configurator: React.FC = () => {
         barrio: config.barrio
       });
       setResult(advice);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error consultando IA:", error);
-      alert("Hubo un error al conectar con el estratega de seguridad. Por favor intente nuevamente.");
+      alert(error.message || "Hubo un error al conectar con el estratega de seguridad. Por favor intente nuevamente.");
     } finally {
       setLoading(false);
     }

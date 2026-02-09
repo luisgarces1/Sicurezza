@@ -121,20 +121,41 @@ export const getSecurityAdvice = async (data: any) => {
     }
 
     const json = await response.json();
+
+    if (json.promptFeedback?.blockReason) {
+      throw new Error(`La consulta fue bloqueada por políticas de seguridad: ${json.promptFeedback.blockReason}`);
+    }
+
     let resultText = json.candidates?.[0]?.content?.parts?.[0]?.text;
 
     if (!resultText) {
-      throw new Error("La IA no generó texto.");
+      if (json.candidates?.[0]?.finishReason === "SAFETY") {
+        throw new Error("La IA bloqueó la respuesta por motivos de seguridad. Intente con otros términos.");
+      }
+      console.error("Respuesta de IA vacía o nula:", json);
+      throw new Error("La IA no generó una respuesta válida.");
     }
 
-    // LIMPIEZA: Eliminamos posibles bloques de markdown
-    resultText = resultText.replace(/```json/g, '').replace(/```/g, '').trim();
+    // EXTRAER JSON: Buscamos el primer '{' y el último '}' por si la IA agregó texto extra
+    const startIdx = resultText.indexOf('{');
+    const endIdx = resultText.lastIndexOf('}');
 
-    // Parseamos el texto JSON
-    return JSON.parse(resultText);
+    if (startIdx === -1 || endIdx === -1) {
+      console.error("La IA no devolvió un formato JSON válido:", resultText);
+      throw new Error("Formato de respuesta inválido.");
+    }
 
-  } catch (error) {
-    console.error("Error grave en el servicio:", error);
+    const cleanJson = resultText.substring(startIdx, endIdx + 1);
+
+    try {
+      return JSON.parse(cleanJson);
+    } catch (e) {
+      console.error("Error al parsear el JSON extraído:", cleanJson);
+      throw new Error("Error en la estructura de la respuesta.");
+    }
+
+  } catch (error: any) {
+    console.error("Error crítico en getSecurityAdvice:", error.message);
     throw error;
   }
 };
