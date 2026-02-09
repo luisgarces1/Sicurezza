@@ -56,9 +56,12 @@ export const getSecurityAdvice = async (data: any) => {
   }
 
   // 1. Obtener el mejor modelo disponible dinámicamente
-  const rawModelName = await getBestAvailableModel(API_KEY);
-  const cleanModelName = rawModelName.replace("models/", ""); // La API de generación requiere solo el nombre corto a veces, pero v1beta suele aceptar ambos. Usamos limpieza para asegurar.
+  const capitalize = (str: string) => str ? str.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ') : '';
+  const barrioClean = capitalize(data.barrio);
+  const municipioClean = capitalize(data.municipio);
 
+  const rawModelName = await getBestAvailableModel(API_KEY!);
+  const cleanModelName = rawModelName.replace("models/", "");
   const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${cleanModelName}:generateContent?key=${API_KEY}`;
 
   console.log(`Conectando a: ${cleanModelName}`);
@@ -70,20 +73,20 @@ export const getSecurityAdvice = async (data: any) => {
     DATOS DEL OBJETIVO:
     - Propiedad: ${data.propertyType}
     - Nivel Solicitado: ${data.securityLevel}
-    - Ubicación: ${data.barrio}, ${data.municipio}
+    - Ubicación: ${barrioClean}, ${municipioClean}
     
     REGLAS DE ORO DE ESCRITURA:
     1. TONO: Hiper-profesional, clínico y premium. Cero clichés. Cero exclamaciones.
     2. VARIABILIDAD: Cada diagnóstico debe ser único. Prohibido usar frases de plantilla como "hemos detectado un aumento".
     3. ESPECIFICIDAD: Si el nivel es III, habla de delincuencia común y semi-organizada. Si es IV+, habla de ataques de alto perfil, secuestro o blindaje militar.
     4. CONTEXTO LOCAL: 
-       - Si es un barrio popular o de alta densidad: Habla de oportunismo, asonadas y vulnerabilidad en accesos rápidos.
+       - Si es un barrio popular o de alta densidad (ej. ${barrioClean}): Habla de oportunismo, asonadas y vulnerabilidad en accesos rápidos.
        - Si es Poblado/Envigado/Laureles: Habla de inteligencia criminal, inhibidores de señal y vulnerabilidad de servicio doméstico.
        - Si es Oriente/Campestre: Habla de aislamiento, tiempos de reacción de la policía (>15 min) y vulnerabilidad perimetral.
 
     ESTRUCTURA TÉCNICA OBLIGATORIA (JSON):
-    - "title": Un título imponente y personalizado.
-    - "analysis": Un párrafo de 4 líneas que explique POR QUÉ esa propiedad en ese lugar es un blanco hoy. Sé creativo y crudo.
+    - "title": Un título imponente y personalizado para ${municipioClean}.
+    - "analysis": Un párrafo de 4 líneas que explique POR QUÉ esa propiedad en ${barrioClean} es un blanco hoy. Sé creativo y crudo.
     - "recommendations": 3 puntos técnicos específicos que NO sean "poner una puerta". Habla de "anclajes estructurales", "cristalería de policarbonato laminado", "marcos de acero balístico", "cerraduras biométricas de grado militar", etc.
     - "closing": Una frase final que genere urgencia sin perder la clase.
 

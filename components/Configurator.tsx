@@ -49,7 +49,7 @@ const Configurator: React.FC = () => {
         <div className="container mx-auto px-6 relative z-10 max-w-7xl">
           <div className="text-center mb-16">
             <span className="text-[#D4C5A5] uppercase tracking-[0.4em] text-sm font-bold mb-6 block animate-[fadeIn_0.5s]">
-              Informe de Inteligencia: {config.municipio}
+              Informe de Inteligencia: {config.municipio.toUpperCase()}
             </span>
             <h2 className="font-serif text-3xl lg:text-5xl text-white mb-8 leading-tight animate-[fadeIn_0.7s]">
               {result.title}
@@ -85,7 +85,7 @@ const Configurator: React.FC = () => {
 
               <div className="bg-[#D4C5A5] p-1 mt-12">
                 <a
-                  href={`https://wa.me/5731234567890?text=Hola,%20recibí%20mi%20análisis%20para%20${config.barrio}.%20Quiero%20agendar%20una%20cita.`}
+                  href={`https://wa.me/5731234567890?text=Hola,%20recibí%20mi%20análisis%20para%20${config.barrio.toUpperCase()}.%20Quiero%20agendar%20una%20cita.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block bg-[#050505] text-[#D4C5A5] hover:bg-[#D4C5A5] hover:text-[#050505] text-center py-8 text-xl md:text-2xl uppercase tracking-widest font-black transition-all duration-500"
