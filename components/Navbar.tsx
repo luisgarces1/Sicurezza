@@ -28,8 +28,8 @@ const Navbar: React.FC = () => {
         <div className="hidden lg:flex items-center gap-4 xl:gap-8 ml-auto">
           {/* Menu Items */}
           {[
-            { label: '¿Por qué?', href: '#legado' },
-            { label: 'Configurador', href: '#configurador' },
+            { label: '¿Por qué una puerta?', href: '#legado' },
+            { label: 'Configurar blindaje', href: '#configurador' },
             { label: 'Planes', href: '#ingenieria' },
             { label: 'Ofertas', href: '#ofertas' },
             { label: 'Portafolio', href: '#portafolio' },

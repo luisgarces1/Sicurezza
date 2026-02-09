@@ -115,7 +115,7 @@ const Configurator: React.FC = () => {
       <div className="container mx-auto px-6">
         <div className="max-w-5xl mx-auto bg-accent-dark p-8 md:p-16 rounded-sm border border-[#D4C5A5]/20 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
           <div className="text-center mb-16">
-            <h2 className="font-serif text-3xl lg:text-4xl text-white mb-6">Configurador de Seguridad</h2>
+            <h2 className="font-serif text-3xl lg:text-4xl text-white mb-6">Configurar Blindaje</h2>
             <p className="text-[#D4C5A5] font-light text-lg">
               El entorno cambia. Su protección debe evolucionar.
               <br />
