@@ -2,40 +2,41 @@
 const API_KEY = import.meta.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY;
 
 /**
- * ESTRATEGIA DE CASCADA (WATERFALL)
- * Intenta secuencialmente diferentes modelos y versiones de API hasta obtener respuesta.
+ * ESTRATEGIA DE CASCADA (WATERFALL) MEJORADA
+ * Intenta secuencialmente diferentes modelos y versiones de API.
+ * Administra el campo responseMimeType de forma dinámica para evitar errores 400 en modelos antiguos.
  */
 export const getSecurityAdvice = async (data: any) => {
   if (!API_KEY) {
     throw new Error("❌ Clave de API no configurada.");
   }
 
-  // Lista de modelos a probar en orden de prioridad
+  // Lista de modelos a probar con configuración específica
   const modelsToTry = [
-    { name: "gemini-1.5-flash", version: "v1beta", useJsonMode: true },
-    { name: "gemini-1.5-flash-001", version: "v1beta", useJsonMode: true },
-    { name: "gemini-1.5-flash", version: "v1", useJsonMode: false },
-    { name: "gemini-pro", version: "v1", useJsonMode: false }
+    { name: "gemini-1.5-flash", version: "v1beta", supportsJson: true },
+    { name: "gemini-1.5-flash-001", version: "v1beta", supportsJson: true },
+    { name: "gemini-1.5-flash", version: "v1", supportsJson: false },
+    { name: "gemini-pro", version: "v1", supportsJson: false }
   ];
 
-  const systemPrompt = `Eres el Director de Estrategia de 'Sicurezza'.
-  Genera un informe técnico de vulnerabilidad.
+  const systemPrompt = `Eres el Director de Estrategia de 'Sicurezza'. 
+  Genera un informe técnico de vulnerabilidad en formato JSON.
   UBICACIÓN: ${data.municipio || "Medellín"}, ${data.barrio || "Sector Exclusivo"}.
   PROPIEDAD: ${data.propertyType}.
   NIVEL: ${data.securityLevel}.
   
-  Responde ÚNICAMENTE en formato JSON con esta estructura:
+  Responde ÚNICAMENTE con este JSON:
   {
-    "title": "Título impactante",
-    "analysis": "Análisis de 4 líneas sobre riesgos locales.",
-    "recommendations": ["Punto 1", "Punto 2", "Punto 3"],
-    "closing": "Cierre elegante."
+    "title": "Título",
+    "analysis": "Análisis (4 líneas)",
+    "recommendations": ["R1", "R2", "R3"],
+    "closing": "Cierre"
   }
   `;
 
   for (const model of modelsToTry) {
     try {
-      console.log(` próbando modelo: ${model.name} (${model.version})...`);
+      console.log(`🔍 Intentando con ${model.name} (${model.version})...`);
 
       const API_URL = `https://generativelanguage.googleapis.com/${model.version}/models/${model.name}:generateContent?key=${API_KEY}`;
 
@@ -44,8 +45,8 @@ export const getSecurityAdvice = async (data: any) => {
         maxOutputTokens: 1000,
       };
 
-      // responseMimeType SOLO se usa en v1beta
-      if (model.useJsonMode) {
+      // SOLO añadimos responseMimeType si el modelo Y la versión de la API lo soportan
+      if (model.supportsJson) {
         generationConfig.responseMimeType = "application/json";
       }
 
@@ -59,21 +60,19 @@ export const getSecurityAdvice = async (data: any) => {
       });
 
       if (!response.ok) {
-        console.warn(`⚠️ Modelo ${model.name} falló con status ${response.status}`);
-        continue; // Probar el siguiente en la lista
+        const errorDetail = await response.json().catch(() => ({}));
+        console.warn(`⚠️ ${model.name} falló:`, errorDetail.error?.message || response.status);
+        continue;
       }
 
       const result = await response.json();
       const rawText = result.candidates?.[0]?.content?.parts?.[0]?.text;
 
-      if (!rawText) {
-        console.warn(`⚠️ El modelo ${model.name} devolvió una respuesta vacía.`);
-        continue;
-      }
+      if (!rawText) continue;
 
       console.log(`✅ Éxito con ${model.name}`);
 
-      // Limpieza robusta del JSON (Eliminar bloques Markdown si existen)
+      // Limpieza robusta para casos donde no se use el modo JSON de la API
       const cleanText = rawText
         .replace(/```json/g, '')
         .replace(/```/g, '')
@@ -82,10 +81,10 @@ export const getSecurityAdvice = async (data: any) => {
       return JSON.parse(cleanText);
 
     } catch (err) {
-      console.error(`❌ Error con modelo ${model.name}:`, err);
-      continue; // Probar el siguiente
+      console.error(`❌ Error con ${model.name}:`, err);
+      continue;
     }
   }
 
-  throw new Error("No se pudo conectar con ningún modelo de seguridad. Por favor, verifique su conexión o clave de API.");
+  throw new Error("No se pudo conectar con ningún estratega de seguridad. Intente nuevamente en unos minutos.");
 };
