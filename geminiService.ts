@@ -7,17 +7,14 @@ async function getSafeModel(key: string): Promise<string> {
     const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${key}`);
     const data = await response.json();
 
-    if (!data.models) {
-      console.warn("No se pudo listar modelos. Usando fallback seguro.");
-      return "gemini-pro";
-    }
+    if (!data.models) return "gemini-pro"; // Fallback de emergencia
 
     console.log("📋 Lista de modelos recibida. Buscando uno seguro...");
 
-    // Buscamos en orden de prioridad, evitando versiones "latest" o experimentales que cobran cuota
+    // Buscamos en orden de prioridad, evitando versiones "latest" que cobran cuota
     const safeModel = data.models.find((m: any) => m.name.includes("gemini-1.5-flash-001")) ||
       data.models.find((m: any) => m.name.includes("gemini-1.5-flash")) ||
-      data.models.find((m: any) => m.name.includes("gemini-pro"));
+      data.models.find((m: any) => m.name === "models/gemini-pro");
 
     if (safeModel) {
       // La API devuelve "models/nombre", limpiamos el prefijo para la URL
@@ -34,34 +31,22 @@ async function getSafeModel(key: string): Promise<string> {
 }
 
 export const getSecurityAdvice = async (data: any) => {
-  console.log("🔒 Iniciando consulta de seguridad blindada...");
-
-  if (!API_KEY) {
-    console.error("❌ CRÍTICO: No se encontró la API KEY.");
-    throw new Error("Clave de API no configurada.");
-  }
+  if (!API_KEY) throw new Error("Falta la API Key");
 
   // 1. OBTENER MODELO SEGURO (Dinámico)
   const modelName = await getSafeModel(API_KEY);
   const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${API_KEY}`;
 
-  // 2. PROMPT DE EXPERTO (Sicurezza)
-  const systemPrompt = `Actúa como el Director de Estrategia de 'Sicurezza' (Blindaje de Lujo).
-  Genera un informe técnico de vulnerabilidad para un cliente exclusivo.
-  
-  DATOS:
-  - Municipio: ${data.municipio || "Medellín"}
-  - Sector/Barrio: ${data.barrio || "Antioquia"}
-  - Propiedad: ${data.propertyType}
-  - Nivel de Blindaje solicitado: ${data.securityLevel}
-  
-  IMPORTANTE: Responde ÚNICAMENTE con un JSON válido. No uses Markdown. No uses comillas triples.
-  Estructura obligatoria:
+  // 2. PROMPT DE LUJO
+  const systemPrompt = `Eres un Consultor de Seguridad de 'Sicurezza'.
+  Ubicación: ${data.municipio || "Medellín"}, ${data.barrio || "Sector Exclusivo"}.
+  Propiedad: ${data.propertyType}.
+  IMPORTANTE: Responde SOLO con JSON válido. Sin Markdown.
   {
-    "title": "Título sofisticado y urgente",
-    "analysis": "Análisis técnico de 4 líneas sobre por qué su sector es vulnerable hoy.",
-    "recommendations": ["Recomendación técnica 1", "Recomendación técnica 2", "Recomendación técnica 3"],
-    "closing": "Cierre imponente invitando a contactar a un experto."
+    "title": "Título del análisis para su zona",
+    "analysis": "Párrafo breve y experto sobre riesgos locales.",
+    "recommendations": ["Recomendación 1", "Recomendación 2"],
+    "closing": "Cierre formal."
   }
   `;
 
@@ -76,40 +61,27 @@ export const getSecurityAdvice = async (data: any) => {
           parts: [{ text: systemPrompt }]
         }],
         generationConfig: {
-          temperature: 0.7,
           responseMimeType: "application/json"
         }
       })
     });
 
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error("🔥 Error API Google:", response.status, errorText);
-      if (response.status === 429) {
-        throw new Error("El sistema está saturado (Quota Exceeded). Por favor intente en un minuto.");
-      }
-      throw new Error(`Error de conexión (${response.status})`);
+      // Si falla, lanzamos error para que la UI lo muestre
+      throw new Error(`Error Google: ${response.status}`);
     }
 
-    const jsonResult = await response.json();
-    const rawText = jsonResult.candidates?.[0]?.content?.parts?.[0]?.text;
+    const json = await response.json();
+    const rawText = json.candidates?.[0]?.content?.parts?.[0]?.text;
 
-    if (!rawText) {
-      throw new Error("La IA no devolvió texto.");
-    }
+    if (!rawText) throw new Error("Sin respuesta de IA");
 
-    console.log("📥 Respuesta cruda:", rawText);
-
-    // 3. LIMPIEZA DE BASURA (Solución definitiva al 'Formato inválido')
-    const cleanText = rawText
-      .replace(/```json/g, '')
-      .replace(/```/g, '')
-      .trim();
-
+    // 3. LIMPIEZA JSON
+    const cleanText = rawText.replace(/```json/g, '').replace(/```/g, '').trim();
     return JSON.parse(cleanText);
 
-  } catch (error: any) {
-    console.error("💀 Fallo en el servicio:", error);
+  } catch (error) {
+    console.error("Error final:", error);
     throw error;
   }
 };
