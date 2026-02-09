@@ -1,4 +1,4 @@
-// geminiService.ts - Motor de Análisis Determinista v2.0 (10 Escenarios Elite)
+// geminiService.ts - Motor de Persuasión y Seguridad v4.0 (Cobertura Regional Antioquia)
 
 export const getSecurityAdvice = async (data: any) => {
   await new Promise(resolve => setTimeout(resolve, 2200));
@@ -8,163 +8,121 @@ export const getSecurityAdvice = async (data: any) => {
   const nivel = data.securityLevel || "Nivel III";
   const propiedad = data.propertyType || "APARTAMENTO";
 
-  // Base de datos expandida a 10 escenarios maestros
   const templates: Record<string, any> = {
-    // 1. NIVEL IV+ (Máxima categoría)
+    // 1. NIVEL IV+ (MÁXIMA URGENCIA)
     nivelIV: {
-      title: "PROTOCOLO DE SEGURIDAD ESTATAL (NIVEL IV+)",
-      analysis: `El análisis de riesgo para ${barrio} indica que la amenaza de intrusión ha escalado a técnicas de impacto cinético. En ${municipio}, el Nivel IV+ es la respuesta definitiva: una barrera impenetrable diseñada para resistir asaltos prolongados con herramientas industriales y balística pesada.`,
-      recommendations: [
-        "Estructura interna en acero al boro con blindaje certificado BR6",
-        "Sistema de cerrojos activos en las 4 caras del marco",
-        "Control de acceso mediante reconocimiento de venas dactilares"
-      ],
-      closing: "Para activos que no permiten margen de error."
+      title: "PROTOCOLO DE SEGURIDAD CRÍTICA (NIVEL IV+)",
+      analysis: `El análisis para ${barrio}, ${municipio}, revela una exposición a amenazas de grado industrial. En este nivel de riesgo, los sistemas convencionales son inútiles ante herramientas de impacto y balística. Su integridad requiere una barrera infranqueable de ingeniería Sicurezza.`,
+      recommendations: ["Blindaje estructural nivel militar", "Cerrojos activos anti-sísmicos", "Anclaje químico de alta resistencia"],
+      closing: "Para activos donde el error no es una opción."
     },
-    // 2. EL POBLADO / PROVENZA
-    poblado: {
-      title: "INTELIGENCIA DE BLINDAJE: SECTOR EL POBLADO",
-      analysis: `La densificación de ${barrio} ha generado un perfil de riesgo basado en el 'marcaje' previo. Para su propiedad en ${municipio}, detectamos que la vulnerabilidad principal es el acceso mediante duplicado de llaves o ataques silenciosos al cilindro.`,
-      recommendations: [
-        "Cilindro de alta seguridad KESO 8000Ω² (Incopiable)",
-        "Escudo protector de acero fundido con rotor anti-taladro",
-        "Acabado en madera noble con tratamiento ignífugo"
-      ],
-      closing: "Excelencia técnica para el perfil más exigente de Medellín."
+    // 2. ÁREA METROPOLITANA - NORTE (Bello, Copacabana, Girardota, Barbosa)
+    valleNorte: {
+      title: "PERFIL DE RIESGO: INTRUSIÓN VIOLENTA",
+      analysis: `La zona norte de ${municipio} registra un aumento crítico en asaltos mediante 'mazo' y 'barreta'. En ${barrio}, las puertas estándar están fallando en menos de 60 segundos ante bandas organizadas. Su puerta actual es el eslabón más débil de su patrimonio.`,
+      recommendations: ["Doble lámina de acero estructural", "Marco reforzado anti-deformación", "Puntos de cierre multidireccionales"],
+      closing: "Blindarse hoy es la única forma de no ser parte de la estadística."
     },
-    // 3. LLANOGRANDE / RETIRO (Fincas Grandes)
-    llanogrande: {
-      title: "SEGURIDAD PERIMETRAL PARA CASAS DE CAMPO",
-      analysis: `Las propiedades extensas en ${municipio} enfrentan el riesgo de aislamiento. En ${barrio}, la respuesta táctica de Sicurezza se enfoca en retardar la intrusión lo suficiente para que los sistemas de respuesta se activen, convirtiendo su puerta en un búnker de refugio.`,
-      recommendations: [
-        "Marco autoportante reforzado para anclaje en estructura de campo",
-        "Sistema de pánico interior con bloqueo total inmediato",
-        "Vidrio espía reforzado para verificación visual sin exposición"
-      ],
-      closing: "Paz absoluta en la tranquilidad de su hogar campestre."
+    // 3. ÁREA METROPOLITANA - SUR (Envigado, Itagüí, Sabaneta, Caldas, La Estrella)
+    valleSur: {
+      title: "ALERTA: MODALIDAD DE ROBO POR APALANCAMIENTO",
+      analysis: `En ${municipio}, los nuevos desarrollos en ${barrio} son blancos de 'intrusión limpia' por deformación de marcos. El 85% de los robos ocurren sin ruido, usando palancas que su puerta actual no puede resistir. Sicurezza neutraliza este vector de ataque.`,
+      recommendations: ["Bisagras anti-palanca de alta carga", "Cerradura inteligente con sensor de impacto", "Refuerzo perimetral de acero templado"],
+      closing: "Proteja su hogar antes de que su zona sea el próximo objetivo."
     },
-    // 4. LAURELES / BELÉN (Tradicional)
-    laureles: {
-      title: "ACTUALIZACIÓN ESTRUCTURAL: SECTOR TRADICIONAL",
-      analysis: `En sectores como ${barrio}, las estructuras de las casas suelen ser robustas pero sus accesos originales son obsoletos. En ${municipio}, la ingeniería de Sicurezza integra tecnología de punta en la estética clásica de su fachada.`,
-      recommendations: [
-        "Anclaje estructural mediante expansión química en muros antiguos",
-        "Puntos de cierre multidireccionales ocultos",
-        "Aislamiento acústico de 45dB para confort total"
-      ],
-      closing: "Tradición y tecnología en perfecta armonía."
+    // 4. ORIENTE ANTIOQUEÑO (Rionegro, Llanogrande, Retiro, La Ceja, Marinilla, Guarne)
+    oriente: {
+      title: "SEGURIDAD DE ALTO PERFIL: ESTRATEGIA ORIENTE",
+      analysis: `Las propiedades exclusivas en ${barrio}, ${municipio}, enfrentan riesgos de 'marcaje' y aislamiento. La delincuencia técnica en el Oriente busca accesos fallidos mediante copias de llaves y ataques al cilindro. Su paz mental depende de una seguridad invisible pero impenetrable.`,
+      recommendations: ["Cilindro suizo KESO 8000Ω² incopiable", "Escudo magnético protector", "Sistema de pánico interior"],
+      closing: "La tranquilidad del Oriente solo es real con la ingeniería Sicurezza."
     },
-    // 5. ENVIGADO / SABANETA (Nuevos Desarrollos)
-    envigado: {
-      title: "BLINDAJE PARA TORRES DE ALTA DISPONIBILIDAD",
-      analysis: `Los nuevos desarrollos en ${barrio} presentan marcos de puerta estándar que ceden ante palancas simples. Para su residencia en ${municipio}, proponemos un sistema que rigidiza la apertura y neutraliza cualquier intento de deformación del marco.`,
-      recommendations: [
-        "Núcleo de acero estructural de 2.5mm con refuerzos horizontales",
-        "Bisagras invisibles de alta carga con pivote anti-palanca",
-        "Cerradura inteligente con gestión de accesos vía smartphone"
-      ],
-      closing: "Protección moderna para el estilo de vida contemporáneo."
+    // 5. URABÁ (Apartadó, Turbo, Carepa, Chigorodó)
+    uraba: {
+      title: "INFORME TÁCTICO: CONTROL DE ACCESO URABÁ",
+      analysis: `El crecimiento de ${municipio} ha traído consigo nuevas modalidades de asalto violento. En ${barrio}, las estructuras requieren un blindaje que soporte climas extremos y ataques de fuerza bruta. Su configuración actual es insuficiente ante el panorama de seguridad regional.`,
+      recommendations: ["Acero galvanizado anticorrosivo", "Cerradura de alta seguridad certificada", "Anclaje de profundidad en pared"],
+      closing: "Seguridad de grado industrial para una región en expansión."
     },
-    // 6. APARTAMENTO NIVEL III+
-    aptIIIPlus: {
-      title: "ANÁLISIS DE RESISTENCIA BALÍSTICA URBANA",
-      analysis: `Su elección de Nivel III+ para este apartamento en ${barrio} es estratégica. En ${municipio}, blindar contra armas cortas y ataques violentos es una inversión en estabilidad familiar ante el crecimiento de la inseguridad urbana.`,
-      recommendations: [
-        "Blindaje balístico certificado Nivel III-A",
-        "Sistema central de mandos con 12 bulones de acero",
-        "Ojo de buey digital con visión nocturna y grabación"
-      ],
-      closing: "Seguridad sin sacrificar la elegancia de su hogar."
+    // 6. SUROESTE (Jericó, Jardín, Fredonia, Amagá, Ciudad Bolívar)
+    suroeste: {
+      title: "PROTECCIÓN RESIDENCIAL: ESTRATEGIA SUROESTE",
+      analysis: `En sectores tradicionales de ${municipio}, como ${barrio}, las viviendas suelen tener puertas de madera vulnerables al hachazo o la patada inicial. Sicurezza refuerza su tradición con tecnología que detiene cualquier incursión violenta en segundos.`,
+      recommendations: ["Blindaje invisible bajo madera noble", "Puntos de cierre reforzados", "Aislamiento termo-acústico premium"],
+      closing: "Que la paz de su pueblo comience dentro de su casa."
     },
-    // 7. CASA NIVEL III+ (Fuerzas Combinadas)
-    casaIIIPlus: {
-      title: "SISTEMA INTEGRAL DE PROTECCIÓN RESIDENCIAL",
-      analysis: `Las casas en ${barrio} requieren un enfoque 360°. Al estar en ${municipio}, su seguridad depende de una puerta que funcione como el corazón de un sistema defensivo, resistiendo ataques de mazos, palancas y herramientas eléctricas.`,
-      recommendations: [
-        "Doble lámina de acero galvanizado con relleno de lana de roca",
-        "Anclaje de seguridad invertido hacia el interior de la baldosa",
-        "Cubre-juntas de seguridad anti-barreta"
-      ],
-      closing: "Un escudo impenetrable diseñado para durar décadas."
+    // 7. MEDELLÍN - SECTORES TRADICIONALES (Laureles, Belén, Robledo)
+    medellinTradicional: {
+      title: "URGENCIA: ACTUALIZACIÓN DE SEGURIDAD URBANA",
+      analysis: `En sectores como ${barrio}, los delincuentes aprovechan la antigüedad de las estructuras para forzar cerraduras obsoletas. En ${municipio}, renovar su acceso con ingeniería Sicurezza es la inversión más inteligente para proteger su vida y su patrimonio.`,
+      recommendations: ["Cilindro anti-bumping de alta seguridad", "Protector de cilindro de acero fundido", "Cerradura CISA italiana"],
+      closing: "No espere a que su puerta ceda. El momento de blindarse es ahora."
     },
-    // 8. RIESGO ESPECÍFICO DE COPIA (Zona Comercial/Alta Rotación)
-    riesgoCopia: {
-      title: "CONTROL DE ACCESO Y SEGURIDAD MECATRÓNICA",
-      analysis: `Hemos detectado que en ${barrio}, el robo mediante 'llave maestra' es la tendencia principal. En ${municipio}, Sicurezza recomienda eliminar el riesgo humano mediante sistemas de llaves incopiables protegidas por patentes internacionales.`,
-      recommendations: [
-        "Cerradura italiana CISA con sistema de re-codificación",
-        "Protector de cilindro magnético con apertura de seguridad",
-        "Tarjeta de propiedad exclusiva para solicitud de llaves"
-      ],
-      closing: "Usted es el único que tiene el control de su entrada."
+    // 8. MEDELLÍN - SECTOR ÉLITE (Poblado, Provenza, Tesoro)
+    medellinElite: {
+      title: "INTELIGENCIA DE BLINDAJE: SECTOR EXCLUSIVO",
+      analysis: `El riesgo en ${barrio} es la intrusión dirigida de guante blanco. En ${municipio}, detectamos vulnerabilidades críticas por manipulación técnica de cilindros estándar. Su propiedad requiere un sistema que garantice que usted es el único con permiso de entrada.`,
+      recommendations: ["Llave incopiable con tarjeta de propiedad", "Sensor de vibración mecatrónico", "Diseño de lujo mimetizado"],
+      closing: "La discreción absoluta es el complemento de una seguridad perfecta."
     },
-    // 9. EMERGENCIA Y UPGRADE (Refuerzo)
-    refuerzo: {
-      title: "INFORME DE REFUERZO DE SEGURIDAD PRIORITARIO",
-      analysis: `Si ha sentido vulnerabilidad en ${barrio}, su instinto es correcto. Las estadísticas en ${municipio} muestran que una puerta reforzada previene el 98% de los intentos de intrusión oportunista en este tipo de propiedades.`,
-      recommendations: [
-        "Instalación de blindaje sobre estructura existente (Opcional)",
-        "Refuerzo de marco con pletina de acero templado",
-        "Segunda cerradura de alta seguridad independiente"
-      ],
-      closing: "No espere a que suceda; prevenga con ingeniería."
+    // 9. ESCENARIO SEMI-URBANO / RESTO DE ANTIOQUIA
+    antioquiaGeneral: {
+      title: "ESTUDIO DE VULNERABILIDAD REGIONAL",
+      analysis: `Tras analizar los reportes de seguridad en ${municipio}, ${barrio}, detectamos una tendencia creciente en asaltos oportunistas a residencias. Sin una base de acero estructural y marcos reforzados, su puerta actual es una invitación abierta para la delincuencia regional.`,
+      recommendations: ["Upgrade estructural a Nivel III", "Sistema de bloqueo multidireccional", "Garantía de impenetrabilidad Sicurezza"],
+      closing: "El estándar Sicurezza es la única defensa real ante la inseguridad actual."
     },
-    // 10. ESTÁNDAR SICUREZZA (La base del lujo)
-    estandar: {
-      title: "ESTÁNDAR DE INGENIERÍA ARQUITECTÓNICA",
-      analysis: `Incluso nuestra configuración base supera cualquier estándar del mercado. En ${barrio}, ${municipio}, su propiedad destacará no solo por su belleza, sino por la solidez que solo el acero estructural y el diseño Sicurezza pueden ofrecer.`,
-      recommendations: [
-        "Certificación de calidad Sicurezza en cada componente",
-        "Acabados personalizados en pintura electrostática o madera",
-        "Garantía extendida de 10 años en estructura"
-      ],
-      closing: "Bienvenido al mundo de la tranquilidad absoluta."
+    // 10. LOCALES / NEGOCIOS (Riesgo Comercial)
+    comercial: {
+      title: "PERFIL DE RIESGO COMERCIAL DETECTADO",
+      analysis: `Los negocios en ${barrio}, ${municipio}, son blancos de ataques nocturnos sincronizados. No permita que su esfuerzo de años sea vulnerado por una puerta convencional. Sicurezza ofrece la ingeniería que detiene asaltos y garantiza la continuidad de su operación.`,
+      recommendations: ["Puerta comercial reforzada", "Monitoreo de apertura digital", "Cierre reforzado anti-mazo"],
+      closing: "Asegure su futuro con el estándar que los profesionales respetan."
     }
   };
 
-  // Lógica de Selección refinada (10 pasos)
-  let selected = templates.estandar;
+  // Lógica de Selección Regional y por Riesgo
+  let selected = templates.antioquiaGeneral; // Fallback
 
-  const b = barrio.toLowerCase();
-  const m = municipio.toLowerCase();
+  const b = (barrio || "").toLowerCase();
+  const m = (municipio || "").toLowerCase();
 
-  // 1. Nivel IV+ es prioridad absoluta
+  // 1. NIVEL IV+ (Prioridad Máxima)
   if (nivel.includes("IV+")) {
     selected = templates.nivelIV;
   }
-  // 2. Poblado / Provenza
-  else if (b.includes("poblado") || b.includes("provenza") || b.includes("tesoro")) {
-    selected = templates.poblado;
+  // 2. VALLE DE ABURRÁ - NORTE (Bello, Copacabana, Girardota, Barbosa)
+  else if (m.includes("bello") || m.includes("copa") || m.includes("gira") || m.includes("barbosa") || b.includes("trapiche")) {
+    selected = templates.valleNorte;
   }
-  // 3. Llanogrande / Retiro
-  else if (b.includes("llano") || m.includes("retiro") || m.includes("rionegro") || m.includes("ceja")) {
-    selected = templates.llanogrande;
+  // 3. VALLE DE ABURRÁ - SUR (Envigado, Itagüí, Sabaneta, Caldas, Estrella)
+  else if (m.includes("envigado") || m.includes("itag") || m.includes("saba") || m.includes("caldas") || m.includes("estrella")) {
+    selected = templates.valleSur;
   }
-  // 4. Laureles / Belén
-  else if (b.includes("laureles") || b.includes("belen") || b.includes("conquistadores")) {
-    selected = templates.laureles;
+  // 4. ORIENTE ANTIOQUEÑO
+  else if (m.includes("rion") || m.includes("llano") || m.includes("retiro") || m.includes("ceja") || m.includes("marin") || m.includes("guarne") || b.includes("llano")) {
+    selected = templates.oriente;
   }
-  // 5. Envigado / Sabaneta
-  else if (m.includes("envigado") || m.includes("sabaneta") || b.includes("estrella")) {
-    selected = templates.envigado;
+  // 5. URABÁ
+  else if (m.includes("apartad") || m.includes("turbo") || m.includes("carepa") || m.includes("chigo") || m.includes("urab")) {
+    selected = templates.uraba;
   }
-  // 6. Casa III+
-  else if (propiedad === "CASA / FINCA" && nivel.includes("III+")) {
-    selected = templates.casaIIIPlus;
+  // 6. SUROESTE
+  else if (m.includes("jeric") || m.includes("jard") || m.includes("fredo") || m.includes("amag") || m.includes("boliv") || m.includes("andes") || m.includes("urra")) {
+    selected = templates.suroeste;
   }
-  // 7. Apt III+
-  else if (propiedad === "APARTAMENTO" && nivel.includes("III+")) {
-    selected = templates.aptIIIPlus;
+  // 7. MEDELLÍN ELITE
+  else if (b.includes("poblado") || b.includes("prov") || b.includes("tesoro") || b.includes("astorga")) {
+    selected = templates.medellinElite;
   }
-  // 8. Zonas de alta rotación (Estadios, centros, etc.)
-  else if (b.includes("centro") || b.includes("estadio") || b.includes("la 70")) {
-    selected = templates.riesgoCopia;
+  // 8. MEDELLÍN TRADICIONAL
+  else if (b.includes("laurel") || b.includes("belen") || b.includes("robledo") || b.includes("pilarica") || b.includes("conquis") || m.includes("medell")) {
+    selected = templates.medellinTradicional;
   }
-  // 9. Fallback casa
-  else if (propiedad === "CASA / FINCA") {
-    selected = templates.refuerzo;
+  // 9. COMERCIAL
+  else if (b.includes("centro") || b.includes("comercial") || b.includes("local") || b.includes("estadio")) {
+    selected = templates.comercial;
   }
-  // 10. Fallback apartamento (Estandar ya es el default inicial)
 
   return {
     title: selected.title,
