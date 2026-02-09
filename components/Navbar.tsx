@@ -9,7 +9,11 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 h-16 md:h-20 flex items-center justify-between gap-4">
         {/* Logo Section */}
         <div
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Esto limpia el #hash de la barra de direcciones sin recargar la página
+            window.history.pushState("", document.title, window.location.pathname + window.location.search);
+          }}
           className="flex items-center gap-2 group cursor-pointer h-full py-3 shrink min-w-0"
         >
           <div className="h-8 md:h-12 aspect-square p-1 bg-black/20 rounded border border-[#D4C5A5]/30 group-hover:border-[#D4C5A5]/60 transition-all duration-500 overflow-hidden shrink-0">
