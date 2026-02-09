@@ -120,38 +120,33 @@ export const getSecurityAdvice = async (data: any) => {
     }
 
     const json = await response.json();
-    console.log("DEBUG: Respuesta API", json);
+    const rawText = json.candidates?.[0]?.content?.parts?.[0]?.text || "";
+    console.log("Texto crudo recibido:", rawText);
 
-    let resultText = json.candidates?.[0]?.content?.parts?.[0]?.text || "";
-
-    if (!resultText) {
+    if (!rawText) {
       if (json.candidates?.[0]?.finishReason === "SAFETY") {
-        throw new Error("Contenido bloqueado por seguridad.");
+        throw new Error("La consulta fue filtrada por políticas de seguridad de la IA.");
       }
-      throw new Error("No hay respuesta de la IA.");
+      throw new Error("La IA no generó una respuesta.");
     }
 
-    // EXTRAER JSON: Buscar el primer '{' y el último '}'
-    const startIndex = resultText.indexOf('{');
-    const endIndex = resultText.lastIndexOf('}');
+    // EXTRACCIÓN ROBUSTA: Buscar el bloque JSON { ... }
+    const jsonMatch = rawText.match(/\{[\s\S]*\}/);
 
-    if (startIndex === -1 || endIndex === -1) {
-      console.error("No se detectó JSON:", resultText);
+    if (!jsonMatch) {
+      console.error("No se detectó estructura JSON:", rawText);
       throw new Error("Formato de respuesta inválido.");
     }
 
-    const jsonSnippet = resultText.substring(startIndex, endIndex + 1);
+    const cleanJson = jsonMatch[0]
+      .replace(/[\u0000-\u001F\u007F-\u009F]/g, "") // Eliminar caracteres de control
+      .trim();
 
     try {
-      return JSON.parse(jsonSnippet);
+      return JSON.parse(cleanJson);
     } catch (e) {
-      // Intento final: limpiar caracteres invisibles
-      try {
-        const cleaned = jsonSnippet.replace(/[\u0000-\u001F\u007F-\u009F]/g, "");
-        return JSON.parse(cleaned);
-      } catch (inner) {
-        throw new Error("Error de estructura en la respuesta.");
-      }
+      console.error("Error al parsear el JSON extraído:", cleanJson);
+      throw new Error("Estructura de datos corrupta.");
     }
 
   } catch (error: any) {

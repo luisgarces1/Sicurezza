@@ -6,28 +6,28 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-[100] bg-[#050505]/95 backdrop-blur-xl border-b border-[#D4C5A5]/10 shadow-2xl transition-all duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between gap-2">
+      <div className="max-w-7xl mx-auto px-4 h-16 md:h-20 flex items-center justify-between gap-4">
         {/* Logo Section */}
         <div
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="flex items-center gap-2 md:gap-4 group cursor-pointer h-full py-3 shrink-0"
+          className="flex items-center gap-2 group cursor-pointer h-full py-3 shrink min-w-0"
         >
-          <div className="h-8 md:h-12 aspect-square p-1 bg-black/20 rounded border border-[#D4C5A5]/30 shadow-[0_0_15px_rgba(212,197,165,0.1)] group-hover:border-[#D4C5A5]/60 transition-all duration-500 overflow-hidden">
+          <div className="h-8 md:h-12 aspect-square p-1 bg-black/20 rounded border border-[#D4C5A5]/30 group-hover:border-[#D4C5A5]/60 transition-all duration-500 overflow-hidden shrink-0">
             <img src="/images/logo_final.jpg" alt="Sicurezza Logo" className="h-full w-full object-cover rounded-sm" />
           </div>
 
-          <div className="flex flex-col justify-center">
-            <span className="text-lg md:text-2xl font-premium font-bold tracking-[0.1em] md:tracking-[0.2em] text-[#D4C5A5] uppercase drop-shadow-md whitespace-nowrap leading-none">
+          <div className="flex flex-col justify-center overflow-hidden">
+            <span className="text-base md:text-2xl font-premium font-bold tracking-[0.1em] md:tracking-[0.2em] text-[#D4C5A5] uppercase drop-shadow-md whitespace-nowrap leading-none">
               Sicurezza
             </span>
             <span className="text-[6px] md:text-[9px] uppercase tracking-[0.1em] md:tracking-[0.3em] text-white/30 group-hover:text-primary transition-colors ml-0.5 whitespace-nowrap mt-1">
-              Blindaje Arquitectónico <span className="hidden md:inline">de Lujo</span>
+              Blindaje Arquitectónico <span className="hidden sm:inline">de Lujo</span>
             </span>
           </div>
         </div>
 
         {/* Desktop Menu - xl+ only */}
-        <div className="hidden xl:flex items-center gap-6 2xl:gap-8 ml-auto">
+        <div className="hidden xl:flex items-center gap-4 2xl:gap-8 ml-auto">
           {[
             { label: '¿POR QUÉ UNA PUERTA?', href: '#legado' },
             { label: 'CONFIGURAR BLINDAJE', href: '#configurador' },
@@ -38,7 +38,7 @@ const Navbar: React.FC = () => {
           ].map((link) => (
             <a
               key={link.label}
-              className="relative text-[10px] 2xl:text-xs uppercase tracking-[0.15em] font-bold text-white/70 hover:text-white transition-colors duration-300 group/link whitespace-nowrap"
+              className="relative text-[10px] 2xl:text-[11px] uppercase tracking-[0.1em] 2xl:tracking-[0.15em] font-bold text-white/70 hover:text-white transition-colors duration-300 group/link whitespace-nowrap"
               href={link.href}
             >
               {link.label}
@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
             href="https://wa.me/5731234567890"
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-2 bg-[#D4C5A5] hover:bg-[#C3B494] text-[#050505] px-5 py-2.5 rounded-[1px] text-[10px] 2xl:text-xs uppercase tracking-[0.2em] font-black transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(212,197,165,0.3)] whitespace-nowrap"
+            className="ml-2 bg-[#D4C5A5] hover:bg-[#C3B494] text-[#050505] px-4 py-2 rounded-[1px] text-[10px] 2xl:text-[11px] uppercase tracking-[0.1em] font-black transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(212,197,165,0.3)] whitespace-nowrap"
           >
             Consulta
           </a>
@@ -59,7 +59,7 @@ const Navbar: React.FC = () => {
         {/* Mobile Toggle */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="xl:hidden text-[#D4C5A5] focus:outline-none"
+          className="xl:hidden text-[#D4C5A5] focus:outline-none shrink-0"
         >
           <span className="material-symbols-outlined text-3xl">
             {isMenuOpen ? 'close' : 'menu'}
