@@ -87,6 +87,18 @@
 }
 </script>
     <!-- index.css removed as it was causing 404 and Tailwind is CDN based -->
+    <script>
+        // Este script fuerza a limpiar el #hash de la URL al cargar o refrescar
+        // y asegura que la página inicie desde arriba.
+        if (window.location.hash) {
+            window.history.replaceState("", document.title, window.location.pathname + window.location.search);
+        }
+        window.onload = function () {
+            setTimeout(function () {
+                window.scrollTo(0, 0);
+            }, 1);
+        };
+    </script>
 </head>
 
 <body class="bg-background-dark text-white selection:bg-primary selection:text-black">
