@@ -5,24 +5,31 @@ import { Project } from '../types';
 const projects: Project[] = [
   {
     id: '1',
-    title: 'Excelencia en El Poblado',
-    location: 'Medellín',
-    materials: 'Caoba Personalizada y Acero',
-    imageUrl: 'https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&q=80&w=800'
+    title: 'Ingeniería de Seguridad',
+    location: 'El Poblado, Medellín',
+    materials: 'Doble Refuerzo de Acero y Multi-Pasadores',
+    imageUrl: '/IMAGENES/WhatsApp Image 2026-03-30 at 9.13.01 AM.jpeg'
   },
   {
     id: '2',
-    title: 'Estado Llanogrande',
-    location: 'Rionegro',
-    materials: 'Acero Arquitectónico Reforzado',
-    imageUrl: 'https://images.unsplash.com/photo-1513584684374-8bdb7489feef?auto=format&fit=crop&q=80&w=800'
+    title: 'Roble Ejecutivo con Cerradura Digital',
+    location: 'Llanogrande, Rionegro',
+    materials: 'Madera Premium y Blindaje Nivel 3',
+    imageUrl: '/IMAGENES/WhatsApp Image 2026-03-30 at 9.13.13 AM.jpeg'
   },
   {
     id: '3',
-    title: 'Modernismo Envigado',
-    location: 'Envigado',
-    materials: 'Acabado en Pizarra Italiana',
-    imageUrl: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&q=80&w=800'
+    title: 'Minimalismo Pivotante',
+    location: 'Envigado, Antioquia',
+    materials: 'Sistema Pivotante de Alta Resistencia',
+    imageUrl: '/IMAGENES/cleaned_white_door.png'
+  },
+  {
+    id: '4',
+    title: 'Diseño Nórdico Blindado',
+    location: 'Sabuneta, Antioquia',
+    materials: 'Acabado en Roble Natural y Acero',
+    imageUrl: '/IMAGENES/WhatsApp Image 2026-03-30 at 9.13.19 AM.jpeg'
   }
 ];
 
@@ -35,12 +42,20 @@ const Portfolio: React.FC = () => {
             <span className="text-primary uppercase tracking-[0.4em] text-xs font-bold mb-4 block">Portafolio</span>
             <h2 className="font-serif text-3xl lg:text-4xl text-white">Instalaciones Reales: <br /><span className="text-gold-muted italic">Maestría Arquitectónica</span></h2>
           </div>
-          <a className="text-primary text-sm font-bold uppercase tracking-widest border-b border-primary/30 pb-1" href="#">Ver Catálogo Completo</a>
+          <a 
+            className="bg-primary/10 hover:bg-primary text-primary hover:text-background-dark px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest border border-primary/20 transition-all flex items-center gap-2 group" 
+            href="https://wa.me/5731234567890?text=Hola,%20me%20gustaría%20ver%20el%20catálogo%20completo%20de%20puertas."
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ver Catálogo Completo
+            <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </a>
         </div>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {projects.map((p) => (
             <div key={p.id} className="group cursor-pointer">
-              <div className="overflow-hidden rounded-lg mb-6 aspect-[3/4]">
+              <div className="overflow-hidden rounded-3xl mb-6 aspect-[9/16] border border-white/5 shadow-2xl bg-black/40 flex items-center justify-center">
                 <img
                   alt={p.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"

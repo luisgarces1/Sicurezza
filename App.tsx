@@ -8,6 +8,7 @@ import Portfolio from './components/Portfolio';
 import Pricing from './components/Pricing';
 import SpecialOffers from './components/SpecialOffers';
 import Testimonials from './components/Testimonials';
+import VideoShowcase from './components/VideoShowcase';
 import Footer from './components/Footer';
 import FloatingContact from './components/FloatingContact';
 import AIConsultationModal from './components/AIConsultationModal';
@@ -29,6 +30,7 @@ const App: React.FC = () => {
         <ValueProp />
         <Configurator onResult={handleOpenAI} />
         <Portfolio />
+        <VideoShowcase />
         <Pricing />
         <SpecialOffers />
         <Testimonials />

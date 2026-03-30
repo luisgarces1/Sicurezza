@@ -22,7 +22,7 @@ const SpecialOffers: React.FC = () => {
                   href="https://wa.me/5731234567890?text=Hola,%20me%20interesa%20el%20Upgrade%20de%20Herrajes."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 sm:mt-0 bg-primary/10 hover:bg-primary text-primary hover:text-background-dark px-4 py-2 rounded text-[10px] font-bold uppercase tracking-widest transition-all whitespace-nowrap"
+                  className="mt-4 sm:mt-0 bg-primary/10 hover:bg-primary text-primary hover:text-background-dark px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all whitespace-nowrap"
                 >
                   Solicitar
                 </a>
@@ -36,24 +36,28 @@ const SpecialOffers: React.FC = () => {
                   href="https://wa.me/5731234567890?text=Hola,%20me%20interesa%20el%20Mantenimiento%20Vitalicio."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 sm:mt-0 bg-primary/10 hover:bg-primary text-primary hover:text-background-dark px-4 py-2 rounded text-[10px] font-bold uppercase tracking-widest transition-all whitespace-nowrap"
+                  className="mt-4 sm:mt-0 bg-primary/10 hover:bg-primary text-primary hover:text-background-dark px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all whitespace-nowrap"
                 >
                   Solicitar
                 </a>
               </div>
             </div>
           </div>
-          <div className="md:order-2 grid grid-cols-2 gap-4">
-            <img
-              alt="Luxury detail 1"
-              className="rounded-lg w-full h-64 object-cover"
-              src="https://images.unsplash.com/photo-1558211583-d26f610c1eb1?auto=format&fit=crop&q=80&w=800"
-            />
-            <img
-              alt="Luxury detail 2"
-              className="rounded-lg w-full h-64 object-cover mt-8"
-              src="https://images.unsplash.com/photo-1600566752355-397921139bc0?auto=format&fit=crop&q=80&w=800"
-            />
+          <div className="md:order-2 grid grid-cols-2 gap-6">
+            <div className="rounded-2xl overflow-hidden bg-black/40 border border-white/5 aspect-[3/4] flex items-center justify-center shadow-xl">
+              <img
+                alt="Interior Residencial Premium"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                src="/IMAGENES/WhatsApp Image 2026-03-30 at 9.13.14 AM (2).jpeg"
+              />
+            </div>
+            <div className="rounded-2xl overflow-hidden bg-black/40 border border-white/5 aspect-[3/4] flex items-center justify-center shadow-xl mt-12">
+              <img
+                alt="Detalle de Acabado en Wood"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                src="/IMAGENES/WhatsApp Image 2026-03-30 at 9.12.59 AM (1).jpeg"
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -29,12 +29,14 @@ const ValueProp: React.FC = () => {
             </div>
           </div>
           <div className="relative group">
-            <div className="absolute -inset-4 border border-primary/20 rounded-lg group-hover:-inset-2 transition-all duration-500"></div>
-            <img
-              alt="Detailed door finish"
-              className="relative rounded-lg w-full h-[500px] object-cover"
-              src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1000"
-            />
+            <div className="absolute -inset-4 border border-primary/20 rounded-3xl group-hover:-inset-2 transition-all duration-500"></div>
+            <div className="relative rounded-3xl overflow-hidden aspect-[11/16] bg-black/40 flex items-center justify-center shadow-2xl border border-white/5">
+              <img
+                alt="Detailed door finish"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                src="/IMAGENES/final_mahogany_hangar.png"
+              />
+            </div>
           </div>
         </div>
       </div>

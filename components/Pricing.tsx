@@ -24,7 +24,7 @@ const Pricing: React.FC = () => {
               <li className="flex items-center gap-3 text-white/70 text-sm"><span className="material-symbols-outlined text-primary text-lg">check_circle</span> Ojo Mágico Digital HD</li>
               <li className="flex items-center gap-3 text-white/70 text-sm"><span className="material-symbols-outlined text-primary text-lg">check_circle</span> Instalación Certificada en 1 día</li>
             </ul>
-            <button className="border border-white/20 text-white py-4 rounded-sm uppercase tracking-widest text-xs font-bold hover:bg-white/5 transition-all">Consultar Precio</button>
+            <button className="border border-white/20 text-white py-4 rounded-full uppercase tracking-widest text-xs font-bold hover:bg-white/5 transition-all">Consultar Precio</button>
           </div>
 
           <div className="bg-primary p-10 rounded-xl flex flex-col relative">
@@ -42,7 +42,7 @@ const Pricing: React.FC = () => {
               <li className="flex items-center gap-3 text-background-dark text-sm font-medium"><span className="material-symbols-outlined text-background-dark text-lg">check_circle</span> Sistema de Llave Única (Maestra)</li>
               <li className="flex items-center gap-3 text-background-dark text-sm font-medium"><span className="material-symbols-outlined text-background-dark text-lg">check_circle</span> Garantía de Por Vida en Estructura</li>
             </ul>
-            <button className="bg-background-dark text-white py-4 rounded-sm uppercase tracking-widest text-xs font-bold hover:bg-background-dark/90 transition-all">Solicitar Oferta Combo</button>
+            <button className="bg-background-dark text-white py-4 rounded-full uppercase tracking-widest text-xs font-bold hover:bg-background-dark/90 transition-all shadow-xl hover:shadow-2xl transition-all">Solicitar Oferta Combo</button>
           </div>
         </div>
       </div>

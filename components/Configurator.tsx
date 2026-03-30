@@ -113,7 +113,7 @@ const Configurator: React.FC = () => {
   return (
     <section id="configurador" className="py-16 bg-background-dark relative">
       <div className="container mx-auto px-6">
-        <div className="max-w-5xl mx-auto bg-accent-dark p-8 md:p-16 rounded-sm border border-[#D4C5A5]/20 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+        <div className="max-w-5xl mx-auto bg-accent-dark p-8 md:p-16 rounded-3xl border border-[#D4C5A5]/20 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
           <div className="text-center mb-16">
             <h2 className="font-serif text-3xl lg:text-4xl text-white mb-6">Configurar Blindaje</h2>
             <p className="text-[#D4C5A5] font-light text-lg">
@@ -132,14 +132,14 @@ const Configurator: React.FC = () => {
               <div className="grid grid-cols-2 gap-6 max-w-2xl mx-auto">
                 <button
                   onClick={() => setConfig({ ...config, propertyType: 'apartment' })}
-                  className={`flex flex-col items-center justify-center gap-4 p-8 rounded-sm border transition-all duration-300 group ${config.propertyType === 'apartment' ? 'border-[#D4C5A5] bg-[#D4C5A5]/10 shadow-[0_0_20px_rgba(212,197,165,0.1)]' : 'border-white/5 hover:border-[#D4C5A5]/50 hover:bg-white/5'}`}
+                  className={`flex flex-col items-center justify-center gap-4 p-8 rounded-2xl border transition-all duration-300 group ${config.propertyType === 'apartment' ? 'border-[#D4C5A5] bg-[#D4C5A5]/10 shadow-[0_0_20px_rgba(212,197,165,0.1)]' : 'border-white/5 hover:border-[#D4C5A5]/50 hover:bg-white/5'}`}
                 >
                   <span className={`material-symbols-outlined text-5xl ${config.propertyType === 'apartment' ? 'text-[#D4C5A5]' : 'text-white/30 group-hover:text-[#D4C5A5]'}`}>apartment</span>
                   <span className="text-white text-sm font-bold uppercase tracking-widest">Apartamento</span>
                 </button>
                 <button
                   onClick={() => setConfig({ ...config, propertyType: 'house' })}
-                  className={`flex flex-col items-center justify-center gap-4 p-8 rounded-sm border transition-all duration-300 group ${config.propertyType === 'house' ? 'border-[#D4C5A5] bg-[#D4C5A5]/10 shadow-[0_0_20px_rgba(212,197,165,0.1)]' : 'border-white/5 hover:border-[#D4C5A5]/50 hover:bg-white/5'}`}
+                  className={`flex flex-col items-center justify-center gap-4 p-8 rounded-2xl border transition-all duration-300 group ${config.propertyType === 'house' ? 'border-[#D4C5A5] bg-[#D4C5A5]/10 shadow-[0_0_20px_rgba(212,197,165,0.1)]' : 'border-white/5 hover:border-[#D4C5A5]/50 hover:bg-white/5'}`}
                 >
                   <span className={`material-symbols-outlined text-5xl ${config.propertyType === 'house' ? 'text-[#D4C5A5]' : 'text-white/30 group-hover:text-[#D4C5A5]'}`}>home</span>
                   <span className="text-white text-sm font-bold uppercase tracking-widest">Casa / Finca</span>
@@ -157,7 +157,7 @@ const Configurator: React.FC = () => {
                   <button
                     key={level}
                     onClick={() => setConfig({ ...config, securityLevel: level })}
-                    className={`p-6 rounded-sm border transition-all text-center group ${config.securityLevel === level ? 'border-[#D4C5A5] bg-[#D4C5A5]/10' : 'border-white/5 hover:border-[#D4C5A5]/50 hover:bg-white/5'}`}
+                    className={`p-6 rounded-2xl border transition-all text-center group ${config.securityLevel === level ? 'border-[#D4C5A5] bg-[#D4C5A5]/10' : 'border-white/5 hover:border-[#D4C5A5]/50 hover:bg-white/5'}`}
                   >
                     <p className="text-white font-bold mb-2 text-xl">Nivel {level}</p>
                     <p className="text-white/40 text-[10px] uppercase tracking-widest group-hover:text-white/70">
@@ -181,7 +181,7 @@ const Configurator: React.FC = () => {
                     placeholder="Ej: Medellín, Envigado..."
                     value={config.municipio}
                     onChange={(e) => setConfig({ ...config, municipio: e.target.value })}
-                    className="w-full bg-white/5 border border-white/10 rounded-sm p-4 text-white focus:border-[#D4C5A5] focus:ring-0 transition-all placeholder:text-white/20"
+                    className="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white focus:border-[#D4C5A5] focus:ring-0 transition-all placeholder:text-white/20 shadow-inner"
                   />
                 </div>
                 <div className="group">
@@ -191,7 +191,7 @@ const Configurator: React.FC = () => {
                     placeholder="Ej: El Poblado, Llanogrande..."
                     value={config.barrio}
                     onChange={(e) => setConfig({ ...config, barrio: e.target.value })}
-                    className="w-full bg-white/5 border border-white/10 rounded-sm p-4 text-white focus:border-[#D4C5A5] focus:ring-0 transition-all placeholder:text-white/20"
+                    className="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white focus:border-[#D4C5A5] focus:ring-0 transition-all placeholder:text-white/20 shadow-inner"
                   />
                 </div>
               </div>
@@ -203,7 +203,7 @@ const Configurator: React.FC = () => {
                 disabled={!config.propertyType || !config.securityLevel || !config.municipio || !config.barrio || loading}
                 onClick={handleConsult}
                 className={`
-                  relative overflow-hidden px-16 py-6 rounded-sm text-sm uppercase tracking-[0.25em] font-black transition-all duration-300
+                  relative overflow-hidden px-16 py-6 rounded-full text-sm uppercase tracking-[0.25em] font-black transition-all duration-300
                   ${(!config.propertyType || !config.securityLevel || !config.municipio || !config.barrio)
                     ? 'bg-white/5 text-white/20 cursor-not-allowed border border-white/5'
                     : 'bg-[#D4C5A5] text-[#050505] hover:bg-[#C3B494] shadow-[0_0_30px_rgba(212,197,165,0.3)] hover:scale-105'}

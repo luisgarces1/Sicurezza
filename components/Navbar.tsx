@@ -17,7 +17,7 @@ const Navbar: React.FC = () => {
           className="flex items-center gap-2 group cursor-pointer h-full py-3 shrink min-w-0"
         >
           <div className="h-8 md:h-12 aspect-square p-1 bg-black/20 rounded border border-[#D4C5A5]/30 group-hover:border-[#D4C5A5]/60 transition-all duration-500 overflow-hidden shrink-0">
-            <img src="/images/logo_final.jpg" alt="Sicurezza Logo" className="h-full w-full object-cover rounded-sm" />
+            <img src="/IMAGENES/LOGO.jpg" alt="Sicurezza Logo" className="h-full w-full object-cover rounded-sm" />
           </div>
 
           <div className="flex flex-col justify-center overflow-hidden">
@@ -54,7 +54,7 @@ const Navbar: React.FC = () => {
             href="https://wa.me/5731234567890"
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-2 bg-[#D4C5A5] hover:bg-[#C3B494] text-[#050505] px-4 py-2 rounded-[1px] text-[10px] 2xl:text-[11px] uppercase tracking-[0.1em] font-black transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(212,197,165,0.3)] whitespace-nowrap"
+            className="ml-2 bg-[#D4C5A5] hover:bg-[#C3B494] text-[#050505] px-6 py-2.5 rounded-full text-[10px] 2xl:text-[11px] uppercase tracking-[0.1em] font-black transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(212,197,165,0.3)] whitespace-nowrap"
           >
             Consulta
           </a>
@@ -93,7 +93,7 @@ const Navbar: React.FC = () => {
           ))}
           <a
             href="https://wa.me/5731234567890"
-            className="mt-4 bg-[#D4C5A5] text-[#050505] py-4 rounded-sm text-sm uppercase tracking-[0.2em] font-black"
+            className="mt-4 bg-[#D4C5A5] text-[#050505] py-4 rounded-full text-sm uppercase tracking-[0.2em] font-black shadow-lg"
           >
             Consulta Privada
           </a>

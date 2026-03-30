@@ -28,14 +28,14 @@ const Hero: React.FC = () => {
               href="https://wa.me/5731234567890"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-primary hover:bg-primary/90 text-background-dark px-8 py-4 md:px-10 md:py-5 rounded-sm text-xs md:text-sm uppercase tracking-widest font-black flex items-center justify-center gap-3 group transition-all"
+              className="bg-primary hover:bg-primary/90 text-background-dark px-8 py-4 md:px-10 md:py-5 rounded-full text-xs md:text-sm uppercase tracking-widest font-black flex items-center justify-center gap-3 group transition-all"
             >
               Consulta Privada
               <span className="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
             </a>
             <a
               href="#configurador"
-              className="border border-white/20 hover:bg-white/5 text-white px-8 py-4 md:px-10 md:py-5 rounded-sm text-xs md:text-sm uppercase tracking-widest font-bold transition-all flex items-center justify-center text-center"
+              className="border border-white/20 hover:bg-white/5 text-white px-8 py-4 md:px-10 md:py-5 rounded-full text-xs md:text-sm uppercase tracking-widest font-bold transition-all flex items-center justify-center text-center"
             >
               Configurar Blindaje
             </a>
