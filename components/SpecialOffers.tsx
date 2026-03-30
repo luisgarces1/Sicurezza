@@ -48,14 +48,14 @@ const SpecialOffers: React.FC = () => {
               <img
                 alt="Interior Residencial Premium"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                src="/imagenes/interior_perro.jpeg"
+                src="/images/interior_perro.jpeg"
               />
             </div>
             <div className="rounded-2xl overflow-hidden bg-black/40 border border-white/5 aspect-[3/4] flex items-center justify-center shadow-xl mt-12">
               <img
                 alt="Detalle de Acabado en Wood"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                src="/imagenes/detalle_madera.jpeg"
+                src="/images/detalle_madera.jpeg"
               />
             </div>
           </div>

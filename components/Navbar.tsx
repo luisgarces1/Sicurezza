@@ -17,7 +17,7 @@ const Navbar: React.FC = () => {
           className="flex items-center gap-2 group cursor-pointer h-full py-3 shrink min-w-0"
         >
           <div className="h-8 md:h-12 aspect-square p-1 bg-black/20 rounded border border-[#D4C5A5]/30 group-hover:border-[#D4C5A5]/60 transition-all duration-500 overflow-hidden shrink-0">
-            <img src="/imagenes/LOGO.jpg" alt="Sicurezza Logo" className="h-full w-full object-cover rounded-sm" />
+            <img src="/images/logo.jpg" alt="Sicurezza Logo" className="h-full w-full object-cover rounded-sm" />
           </div>
 
           <div className="flex flex-col justify-center overflow-hidden">

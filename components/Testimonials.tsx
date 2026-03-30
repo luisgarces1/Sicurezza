@@ -70,12 +70,12 @@ const Testimonials: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent z-10 pointer-events-none"></div>
               <div className="grid grid-rows-2 h-full gap-1">
                 <img 
-                  src="/imagenes/cleaned_chassis.png" 
+                  src="/images/cleaned_chassis.png" 
                   alt="Estructura Interna de Seguridad" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
                 />
                 <img 
-                  src="/imagenes/final_chassis_v2.png" 
+                  src="/images/final_chassis_v2.png" 
                   alt="Ingeniería Interna - Chasis" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
                 />
@@ -103,7 +103,7 @@ const Testimonials: React.FC = () => {
             <div className="grid grid-cols-2 gap-6 mt-6">
               <div className="relative group rounded-xl overflow-hidden aspect-video border border-white/10">
                 <img 
-                  src="/imagenes/WhatsApp Image 2026-03-30 at 9.12.56 AM (2).jpeg" 
+                  src="/images/WhatsApp Image 2026-03-30 at 9.12.56 AM (2).jpeg" 
                   alt="Tecnología de Seguridad" 
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                 />
@@ -113,7 +113,7 @@ const Testimonials: React.FC = () => {
               </div>
               <div className="relative group rounded-xl overflow-hidden aspect-video border border-white/10 bg-black">
                 <video 
-                   src="/imagenes/video_seguridad.mp4" 
+                   src="/images/video_seguridad.mp4" 
                    className="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-opacity"
                    muted
                    loop

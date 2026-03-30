@@ -14,7 +14,7 @@ const VideoShowcase: React.FC = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="relative group overflow-hidden rounded-3xl bg-black/40 border border-white/10 aspect-video shadow-2xl">
             <video 
-              src="/imagenes/video_mecanismo.mp4" 
+              src="/images/video_mecanismo.mp4" 
               className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
               controls
               muted
@@ -50,7 +50,7 @@ const VideoShowcase: React.FC = () => {
 
             <div className="relative group overflow-hidden rounded-2xl border border-white/10 aspect-video max-w-sm shadow-xl">
                 <video 
-                src="/imagenes/video_acabado.mp4" 
+                src="/images/video_acabado.mp4" 
                 className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity"
                 controls
                 muted
