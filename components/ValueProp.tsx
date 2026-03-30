@@ -34,7 +34,7 @@ const ValueProp: React.FC = () => {
               <img
                 alt="Detailed door finish"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                src="/IMAGENES/final_mahogany_hangar.png"
+                src="/imagenes/final_mahogany_hangar.png"
               />
             </div>
           </div>

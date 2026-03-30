@@ -8,28 +8,28 @@ const projects: Project[] = [
     title: 'Ingeniería de Seguridad',
     location: 'El Poblado, Medellín',
     materials: 'Doble Refuerzo de Acero y Multi-Pasadores',
-    imageUrl: '/IMAGENES/WhatsApp Image 2026-03-30 at 9.13.01 AM.jpeg'
+    imageUrl: '/imagenes/puerta_roble.jpeg'
   },
   {
     id: '2',
     title: 'Roble Ejecutivo con Cerradura Digital',
     location: 'Llanogrande, Rionegro',
     materials: 'Madera Premium y Blindaje Nivel 3',
-    imageUrl: '/IMAGENES/WhatsApp Image 2026-03-30 at 9.13.13 AM.jpeg'
+    imageUrl: '/imagenes/puerta_digital.jpeg'
   },
   {
     id: '3',
     title: 'Minimalismo Pivotante',
     location: 'Envigado, Antioquia',
     materials: 'Sistema Pivotante de Alta Resistencia',
-    imageUrl: '/IMAGENES/cleaned_white_door.png'
+    imageUrl: '/imagenes/cleaned_white_door.png'
   },
   {
     id: '4',
     title: 'Diseño Nórdico Blindado',
     location: 'Sabuneta, Antioquia',
     materials: 'Acabado en Roble Natural y Acero',
-    imageUrl: '/IMAGENES/WhatsApp Image 2026-03-30 at 9.13.19 AM.jpeg'
+    imageUrl: '/imagenes/puerta_nordica.jpeg'
   }
 ];
 
