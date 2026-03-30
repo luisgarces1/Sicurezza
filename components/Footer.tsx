@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
               <ul className="space-y-4 text-white/50 text-sm">
                 <li><a className="hover:text-primary transition-colors" href="https://instagram.com/sicu.rezza010" target="_blank" rel="noopener noreferrer">Instagram</a></li>
                 <li><a className="hover:text-primary transition-colors" href="#">LinkedIn</a></li>
-                <li><a className="hover:text-primary transition-colors" href="https://wa.me/5731234567890" target="_blank" rel="noopener noreferrer">Línea Privada</a></li>
+                <li><a className="hover:text-primary transition-colors" href="https://wa.me/573105078585" target="_blank" rel="noopener noreferrer">Línea Privada</a></li>
               </ul>
             </div>
             <div className="hidden md:block">

@@ -51,7 +51,7 @@ const Navbar: React.FC = () => {
           ))}
 
           <a
-            href="https://wa.me/5731234567890"
+            href="https://wa.me/573105078585"
             target="_blank"
             rel="noopener noreferrer"
             className="ml-2 bg-[#D4C5A5] hover:bg-[#C3B494] text-[#050505] px-6 py-2.5 rounded-full text-[10px] 2xl:text-[11px] uppercase tracking-[0.1em] font-black transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(212,197,165,0.3)] whitespace-nowrap"
@@ -92,7 +92,7 @@ const Navbar: React.FC = () => {
             </a>
           ))}
           <a
-            href="https://wa.me/5731234567890"
+            href="https://wa.me/573105078585"
             className="mt-4 bg-[#D4C5A5] text-[#050505] py-4 rounded-full text-sm uppercase tracking-[0.2em] font-black shadow-lg"
           >
             Consulta Privada

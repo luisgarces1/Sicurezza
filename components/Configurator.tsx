@@ -85,7 +85,7 @@ const Configurator: React.FC = () => {
 
               <div className="bg-[#D4C5A5] p-1 mt-12">
                 <a
-                  href={`https://wa.me/5731234567890?text=Hola,%20recibí%20mi%20análisis%20para%20${config.barrio.toUpperCase()}.%20Quiero%20agendar%20una%20cita.`}
+                  href={`https://wa.me/573105078585?text=Hola,%20recibí%20mi%20análisis%20para%20${config.barrio.toUpperCase()}.%20Quiero%20agendar%20una%20cita.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block bg-[#050505] text-[#D4C5A5] hover:bg-[#D4C5A5] hover:text-[#050505] text-center py-8 text-xl md:text-2xl uppercase tracking-widest font-black transition-all duration-500"

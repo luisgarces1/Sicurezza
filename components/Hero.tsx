@@ -25,7 +25,7 @@ const Hero: React.FC = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a
-              href="https://wa.me/5731234567890"
+              href="https://wa.me/573105078585"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-primary hover:bg-primary/90 text-background-dark px-8 py-4 md:px-10 md:py-5 rounded-full text-xs md:text-sm uppercase tracking-widest font-black flex items-center justify-center gap-3 group transition-all"

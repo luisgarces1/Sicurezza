@@ -101,7 +101,7 @@ const AIConsultationModal: React.FC<Props> = ({ isOpen, onClose, property, level
         {!loading && (
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
             <a
-              href="https://wa.me/5731234567890"
+              href="https://wa.me/573105078585"
               target="_blank"
               className="flex-1 bg-[#D4C5A5] text-[#050505] py-4 rounded-sm text-xs font-black uppercase tracking-widest hover:bg-[#c3b494] transition-colors text-center shadow-lg shadow-[#D4C5A5]/10"
             >

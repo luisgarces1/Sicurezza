@@ -44,7 +44,7 @@ const Portfolio: React.FC = () => {
           </div>
           <a 
             className="bg-primary/10 hover:bg-primary text-primary hover:text-background-dark px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest border border-primary/20 transition-all flex items-center gap-2 group" 
-            href="https://wa.me/5731234567890?text=Hola,%20me%20gustaría%20ver%20el%20catálogo%20completo%20de%20puertas."
+            href="https://wa.me/573105078585?text=Hola,%20me%20gustaría%20ver%20el%20catálogo%20completo%20de%20puertas."
             target="_blank"
             rel="noopener noreferrer"
           >

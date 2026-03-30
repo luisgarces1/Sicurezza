@@ -19,7 +19,7 @@ const SpecialOffers: React.FC = () => {
                   <p className="text-white text-sm"><span className="font-bold block sm:inline">Upgrade de Herrajes:</span> Acabados en oro de 24k o níquel satinado sin costo adicional en Nivel IV.</p>
                 </div>
                 <a
-                  href="https://wa.me/5731234567890?text=Hola,%20me%20interesa%20el%20Upgrade%20de%20Herrajes."
+                  href="https://wa.me/573105078585?text=Hola,%20me%20interesa%20el%20Upgrade%20de%20Herrajes."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-4 sm:mt-0 bg-primary/10 hover:bg-primary text-primary hover:text-background-dark px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all whitespace-nowrap"
@@ -33,7 +33,7 @@ const SpecialOffers: React.FC = () => {
                   <p className="text-white text-sm"><span className="font-bold block sm:inline">Mantenimiento Vitalicio:</span> Incluido en todos los contratos cerrados este trimestre.</p>
                 </div>
                 <a
-                  href="https://wa.me/5731234567890?text=Hola,%20me%20interesa%20el%20Mantenimiento%20Vitalicio."
+                  href="https://wa.me/573105078585?text=Hola,%20me%20interesa%20el%20Mantenimiento%20Vitalicio."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-4 sm:mt-0 bg-primary/10 hover:bg-primary text-primary hover:text-background-dark px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all whitespace-nowrap"

@@ -6,7 +6,7 @@ const FloatingContact: React.FC = () => {
     <div className="fixed bottom-8 right-8 z-[100]">
       <a
         className="bg-[#25D366] hover:bg-[#128C7E] text-white p-4 rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-110"
-        href="https://wa.me/5731234567890"
+        href="https://wa.me/573105078585"
         target="_blank"
         rel="noopener noreferrer"
       >
