@@ -15,7 +15,7 @@ const projects: Project[] = [
     title: 'Roble Ejecutivo con Cerradura Digital',
     location: 'Llanogrande, Rionegro',
     materials: 'Madera Premium y Blindaje Nivel 3',
-    imageUrl: '/images/puerta_digital.jpeg'
+    imageUrl: '/images/puerta_digital_cleaned.png'
   },
   {
     id: '3',
